@@ -3,27 +3,30 @@
 </div>
 
 <section class="container bg-light p-4 h-100" [formGroup]="formGroup">
-	<div class="array-container" formArrayName="list">
+	<div class="array-container" formArrayName="list" fxLayout="column" fxLayoutAlign="center start">
 		<div *ngFor="let control of formGroup.get('list').controls; let i = index;" [formGroupName]="i"
-			class="form-row  mb-3" [style.order]="arrayOrder[i]">
-			<small class="form-index p-1 mr-2 text-white bg-primary">{{i}},{{arrayOrder[i]? arrayOrder[i]: 0}}</small>
-			<div class="form-inline row form-row py-2 border-primary bg-white">
-				<div class="form-group m-1 control">
+			class="form-row  mb-3" [fxFlexOrder]="arrayOrder[i]" fxLayout="row" fxLayoutAlign="start center"
+			fxLayoutGap=".8rem">
+			<small fxFlex="28px" fxLayoutAlign="center center" class="form-index p-1 text-white bg-primary">{{i}},{{arrayOrder[i]? arrayOrder[i]: 0}}</small>
+			<div fxFlex="1 1 calc(100% - 28px - .8rem)" class="form-inline row form-row p-2 border-primary bg-white"
+				fxLayout="row" fxLayoutGap=".5rem">
+				<div class="form-group control" fxFlex="auto">
 					<label [for]="'rate_'+i" class="sr-only">Rate</label>
 					<input type="text" class="form-control form-control-sm" [id]="'rate_'+i" formControlName="rate" placeholder="Rate"/>
-			</div>
-					<div class="form-group m-1 control">
+			  </div>
+				<div class="form-group control" fxFlex="auto">
 						<label [for]="'quantity_'+i" class="sr-only">Quantity</label>
 						<input type="text" class="form-control form-control-sm" [id]="'quantity_'+i" formControlName="quantity" placeholder="Quantity"/>
-			</div>
-						<div class="form-group m-1 control">
+			  </div>
+				<div class="form-group control" fxFlex="auto">
 							<label [for]="'total_'+i" class="sr-only">Total</label>
 							<input type="text" class="form-control form-control-sm" [id]="'total_'+i" formControlName="total" placeholder="Total"/>
-			 </div>
-							<button class="btn btn-primary btn-sm ml-2 float-right" (click)="addRow(i)"><fa-icon [icon]="faPlus"></fa-icon></button>
-							<button class="btn btn-danger btn-sm ml-1 float-right" (click)="removeRow(i)"><fa-icon [icon]="faTrash"></fa-icon></button>
-						</div>
-					</div>
+			  </div>
+				<div fxFlex="auto" fxLayoutGap=".2rem">
+					<button class="btn btn-primary btn-sm" fxFlex="auto" (click)="addRow(i)"><fa-icon [icon]="faPlus"></fa-icon></button>
+					<button class="btn btn-danger btn-sm" fxFlex="auto" (click)="removeRow(i)"><fa-icon [icon]="faTrash"></fa-icon></button>
 				</div>
-
+			</div>
+		</div>
+	</div>
 </section>

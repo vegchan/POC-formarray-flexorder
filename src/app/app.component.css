@@ -1,42 +1,23 @@
 p {
   font-family: Lato;
 }
-.array-container{
-  display: flex;
-  flex-direction: column;
-}
-.form-row{
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  /* border:1px solid; */
-}
+
+
 .form-inline {
   border: 1px solid #CCC;
   border-radius: 4px;
-  display: flex;
-  flex-wrap: nowrap;
-  flex-grow:1;
   min-width:0;
 }
 
 .form-index{
-  display:flex;
   border-radius: 4px;
   height: 30px;
-  width:30px;
-  align-items: center;
 }
 
 .control {
-  display: flex;
-  flex-shrink: 1;
   width: calc(33% - 2.3rem);
 }
 
 input {
-  display:flex;
   max-width: 100%;
-  flex-grow:1
 }
