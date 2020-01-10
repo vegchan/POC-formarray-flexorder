@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { FormGroup, FormBuilder, FormArray } from "@angular/forms";
-import { combineLatest, Subscription } from "rxjs";
+import { combineLatest, Subscription, Subject } from "rxjs";
 import { debounceTime, map } from "rxjs/operators";
 import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 
@@ -16,8 +16,10 @@ export class AppComponent {
   faPlus = faPlus;
   faTrash = faTrash;
   arrayOrder = [];
+  sortForm$ = new Subject<any>();
   constructor(private formBuilder: FormBuilder) {
     this.buildForm();
+    this.sortForm$.pipe(debounceTime(3000)).subscribe(this.setOrder.bind(this));
   }
 
   get list() {
@@ -79,7 +81,7 @@ export class AppComponent {
         )
         .subscribe(({ rate, quantity }) => {
           control.get("total").setValue(rate * quantity);
-          this.setOrder();
+          this.sortForm$.next();
         });
 
       this.subscription.add(sub);
