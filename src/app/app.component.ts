@@ -54,7 +54,7 @@ export class AppComponent {
   removeRow(index: number) {
     if (index > -1) {
       this.list.removeAt(index);
-      this.arrayOrder.slice(index, 1);
+      this.arrayOrder = this.arrayOrder.slice(index, 1);
     }
   }
 
